@@ -21,9 +21,9 @@
         /* Estilo para os corações com imagem */
         .heart {
             position: absolute;
-            width: 50px; /* Ajuste o tamanho da imagem */
-            height: 50px; /* Ajuste o tamanho da imagem */
-            background-image: url('WhatsApp Image 2025-01-16 at 16.57.02.jpeg'); /* Caminho para a sua imagem */
+            width: 50px;
+            height: 50px;
+            background-image: url('./img.jpeg');
             background-size: cover;
             cursor: pointer;
             animation: bounce 1s infinite;
@@ -42,12 +42,12 @@
         /* Estilo da decoração que aparece após o clique */
         .decoration {
             position: absolute;
-            font-size: 30px;
-            color: rgb(12, 12, 12);
+            font-size: 18px;
+            color: #000;
             text-align: center;
             display: none;
             animation: fadeIn 0.5s;
-            pointer-events: none; /* Evita que a frase interfira no clique em outros corações */
+            pointer-events: none;
         }
 
         /* Animação para a frase */
@@ -71,9 +71,9 @@
 
         #user-input {
             width: 300px;
-            height: 50px;
-            font-size: 18px;
-            padding: 10px;
+            height: 40px;
+            font-size: 16px;
+            padding: 8px;
             border: 2px solid #ccc;
             border-radius: 5px;
             margin-bottom: 10px;
@@ -96,13 +96,12 @@
         /* Área de resposta motivadora */
         #response {
             margin-top: 20px;
-            font-size: 24px;
+            font-size: 20px;
             color: #333;
             font-weight: bold;
-            display: none; /* Inicialmente invisível */
             text-align: center;
+            display: none; /* Inicialmente invisível */
         }
-
     </style>
 </head>
 <body>
@@ -123,29 +122,25 @@
             heart.classList.add('heart');
             const x = Math.random() * window.innerWidth;
             const y = Math.random() * window.innerHeight;
-            heart.style.left = ${x}px;
-            heart.style.top = ${y}px;
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
 
             // Adicionar evento de clique nos corações
             heart.addEventListener('click', function () {
-                // Remover o coração clicado
                 heart.style.display = 'none';
 
-                // Adicionar decoração (mensagem)
                 const decoration = document.createElement('div');
                 decoration.classList.add('decoration');
-                decoration.textContent = 'A mais perfeita do universo'; // A frase personalizada
-
-                decoration.style.left = ${x}px;
-                decoration.style.top = ${y - 50}px;  // Ajuste para a frase aparecer um pouco acima do coração
+                decoration.textContent = 'A mais perfeita do universo!';
+                decoration.style.left = `${x}px`;
+                decoration.style.top = `${y - 50}px`;
                 document.body.appendChild(decoration);
 
-                // Mostrar a frase
                 decoration.style.display = 'block';
 
                 // Fazer a decoração desaparecer após 3 segundos
                 setTimeout(() => {
-                    decoration.style.display = 'none';
+                    decoration.remove();
                 }, 3000);
             });
 
@@ -157,98 +152,31 @@
             createHeart();
         }
 
-        // Função para gerar uma resposta romântica tranquila
+        // Função para gerar uma resposta motivadora com base no input
         function generateRomanticResponse(input) {
             const responses = [
-                'O jeito como você observa o mundo é realmente inspirador.',
-                'Você tem uma energia única que torna tudo mais leve.',
-                'Cada palavra sua traz uma sensação de tranquilidade.',
-                'É impressionante como sua presença ilumina qualquer ambiente.',
-                'Seu sorriso tem a capacidade de transformar um dia comum em algo especial.',
-                'A sua calma transmite uma sensação de paz muito boa.',
-                'Você tem um olhar que transmite muita confiança e serenidade.',
-                'Eu fico encantado com a maneira simples e autêntica que você tem de ser.',
-                'Tem algo muito cativante em você, algo que me faz querer ouvir mais.',
-                'Sua presença tem o poder de deixar tudo ao redor mais bonito.',
-                'Você tem uma graça natural que é difícil de encontrar.',
-                'Eu sempre fico mais tranquilo quando você está por perto.',
-                'Você tem o tipo de beleza que só quem a conhece consegue ver.',
-                'Sua simplicidade é algo que me encanta cada vez mais.',
-                'É bom perceber que pessoas assim como você ainda existem.',
-                'Você tem um jeito todo especial de tornar o dia mais leve e agradável.',
-                'É incrível como sua energia positiva é contagiante.',
-                'A forma como você se expressa transmite muita tranquilidade.',
-                'Você sabe como deixar o momento mais interessante sem precisar fazer muito.',
-                'A maneira como você observa as coisas ao seu redor é fascinante.',
-                'Você tem uma beleza que vai além da aparência, ela está no seu jeito de ser.',
-                'Cada vez que você fala, sinto como se o mundo ficasse um pouco mais claro.',
-                'É bom ter a oportunidade de conhecer alguém tão autêntica como você.',
-                'O jeito que você se dedica ao que faz é inspirador.',
-                'Sempre que converso com você, sinto que estou aprendendo algo novo.',
-                'Seu olhar transmite uma calma que faz tudo ao redor parecer mais tranquilo.',
-                'Você tem uma maneira muito sutil de fazer tudo parecer mais interessante.',
-                'Eu gosto de como você vê o mundo com um toque de leveza.',
-                'Você tem a habilidade de fazer tudo parecer tão fácil e natural.',
-                'Você sabe como tornar os momentos simples em algo memorável.',
-                'É incrível a forma como você consegue ser tão cativante sem esforço.',
-                'A maneira como você se expressa reflete uma calma que eu admiro.',
-                'Você tem uma maneira tão natural de ser que é impossível não gostar.',
-                'É fascinante como sua presença tem um impacto positivo onde você está.',
-                'Cada vez que te vejo, fico mais encantado com a sua energia tão boa.',
-                'Eu gosto da forma tranquila com que você lida com as situações ao seu redor.',
-                'Sua capacidade de ser tão autêntica é algo que eu admiro muito.',
-                'A sua simpatia torna o ambiente ao seu redor mais agradável e acolhedor.',
-                'É bom estar perto de alguém que transmite tanta paz e harmonia.',
-                'Sempre que você sorri, faz tudo ao seu redor parecer mais leve.',
-                'Você tem um charme natural que é difícil de não notar.',
-                'Eu admiro a maneira como você tem sempre algo interessante a dizer.',
-                'Você tem a habilidade de fazer qualquer lugar parecer mais acolhedor.',
-                'Admiro como você consegue ser autêntica sem precisar se esforçar.',
-                'O jeito como você fala sobre as coisas me faz enxergar o mundo de outra forma.',
-                'Eu fico muito bem na sua companhia, você tem uma energia boa.',
-                'Sua presença traz uma sensação de tranquilidade que eu aprecio muito.',
-                'A forma como você conduz uma conversa é muito interessante e cativante.',
-                'É sempre uma experiência agradável estar perto de alguém tão tranquilo como você.',
-                'Você tem uma maneira simples de tornar tudo ao seu redor mais bonito.',
-                'Cada vez que me sinto ao seu lado, tudo parece se encaixar de forma natural.',
-                'Eu gosto de como você transmite segurança e tranquilidade ao mesmo tempo.',
-                'A sua simplicidade faz com que tudo ao seu redor fique mais bonito.',
-                'Você tem um jeito único de cativar as pessoas com sua presença.',
-                'Eu gosto muito do seu jeito de ver as coisas, você sempre me faz pensar.',
-                'Você tem uma energia tão boa que é impossível não se sentir bem ao seu redor.',
-                'Eu admiro como você consegue manter as coisas simples e ao mesmo tempo especiais.',
-                'A sua maneira tranquila de ser me faz sentir à vontade, e isso é raro.',
-                'Sua presença é tão agradável que torna qualquer momento mais tranquilo.',
-                'Você tem um charme natural que é impossível não notar.',
-                'Cada conversa com você é uma oportunidade de aprender algo novo e interessante.',
-                'Sua maneira serena de lidar com as situações é algo que me inspira.',
-                'Eu fico feliz em poder compartilhar alguns momentos com alguém tão autêntica quanto você.',
-                'Você tem um jeito de ser que é ao mesmo tempo simples e encantador.',
-                'É sempre bom conversar com alguém que tem tanto equilíbrio e leveza.',
-                'Sua presença traz uma paz que é difícil de descrever.',
-                'Você é daquelas pessoas que tornam os dias mais agradáveis só de estar por perto.',
-                'Eu fico fascinado pela maneira como você tem tudo sob controle, de uma forma tão calma.',
-                'A sua simplicidade é o que faz tudo ao seu redor parecer perfeito.',
-                'Você é o tipo de pessoa que deixa o ambiente mais agradável só com sua presença.',
-                'É bom ver alguém tão autêntica quanto você, realmente faz diferença.',
-                'Eu gosto de como você tem a habilidade de tornar os momentos mais simples muito especiais.',
-                'Estar ao seu lado é sempre uma experiência agradável e tranquila.',
-                'Eu gosto muito da sua maneira tranquila de lidar com tudo ao seu redor.',
-                'Você tem a capacidade de tornar qualquer lugar mais acolhedor e interessante.',
-                'Você tem uma forma única de fazer as coisas, e eu admiro isso.'
+                'Seu sorriso ilumina qualquer lugar.',
+                'Sua energia é realmente inspiradora!',
+                'O mundo é melhor porque você está nele.',
+                'Você faz a diferença na vida das pessoas.',
+                'É incrível como você transmite tanta paz.'
             ];
 
-            // Escolher uma resposta aleatória
+            if (!input.trim()) {
+                return 'Por favor, digite uma frase antes de enviar.';
+            }
+
             const randomIndex = Math.floor(Math.random() * responses.length);
-            return responses[randomIndex];
+            return `${input} - ${responses[randomIndex]}`;
         }
 
-        // Função para capturar a frase digitada e gerar uma resposta
-        document.getElementById('submit-btn').addEventListener('click', function() {
+        // Capturar a frase digitada e exibir a resposta
+        document.getElementById('submit-btn').addEventListener('click', function () {
             const userInput = document.getElementById('user-input').value;
             const response = generateRomanticResponse(userInput);
-            document.getElementById('response').textContent = response;
-            document.getElementById('response').style.display = 'block';
+            const responseContainer = document.getElementById('response');
+            responseContainer.textContent = response;
+            responseContainer.style.display = 'block';
         });
     </script>
 
