@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Corações e Respostas Motivadoras</title>
+    <style>
+        /* Estilo básico para o corpo da página */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Estilo para os corações com imagem */
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('./img.jpeg');
+            background-size: cover;
+            cursor: pointer;
+            animation: bounce 1s infinite;
+        }
+
+        /* Animação de movimento dos corações */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Estilo da decoração que aparece após o clique */
+        .decoration {
+            position: absolute;
+            font-size: 18px;
+            color: #000;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s;
+            pointer-events: none;
+        }
+
+        /* Animação para a frase */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Estilo do formulário de entrada */
+        .input-container {
+            margin-top: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #user-input {
+            width: 300px;
+            height: 40px;
+            font-size: 16px;
+            padding: 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #submit-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Área de resposta motivadora */
+        #response {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+            display: none; /* Inicialmente invisível */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="heart-container"></div>
+
+    <div class="input-container">
+        <input type="text" id="user-input" placeholder="Digite sua frase...">
+        <button id="submit-btn">Enviar</button>
+    </div>
+
+    <div id="response"></div>
+
+    <script>
+        // Função para criar corações com imagem em posições aleatórias
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+
+            // Adicionar evento de clique nos corações
+            heart.addEventListener('click', function () {
+                heart.style.display = 'none';
+
+                const decoration = document.createElement('div');
+                decoration.classList.add('decoration');
+                decoration.textContent = 'A mais perfeita do universo!';
+                decoration.style.left = `${x}px`;
+                decoration.style.top = `${y - 50}px`;
+                document.body.appendChild(decoration);
+
+                decoration.style.display = 'block';
+
+                // Fazer a decoração desaparecer após 3 segundos
+                setTimeout(() => {
+                    decoration.remove();
+                }, 3000);
+            });
+
+            document.getElementById('heart-container').appendChild(heart);
+        }
+
+        // Criar 50 corações na tela
+        for (let i = 0; i < 50; i++) {
+            createHeart();
+        }
+
+        // Função para gerar uma resposta motivadora com base no input
+        function generateRomanticResponse(input) {
+            const responses = [
+                'Seu sorriso ilumina qualquer lugar.',
+                'Sua energia é realmente inspiradora!',
+                'O mundo é melhor porque você está nele.',
+                'Você faz a diferença na vida das pessoas.',
+                'É incrível como você transmite tanta paz.'
+            ];
+
+            if (!input.trim()) {
+                return 'Por favor, digite uma frase antes de enviar.';
+            }
+
+            const randomIndex = Math.floor(Math.random() * responses.length);
+            return `${input} - ${responses[randomIndex]}`;
+        }
+
+        // Capturar a frase digitada e exibir a resposta
+        document.getElementById('submit-btn').addEventListener('click', function () {
+            const userInput = document.getElementById('user-input').value;
+            const response = generateRomanticResponse(userInput);
+            const responseContainer = document.getElementById('response');
+            responseContainer.textContent = response;
+            responseContainer.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
